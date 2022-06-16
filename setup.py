@@ -8,7 +8,7 @@ setup(
     author='Matthew Parno',
     author_email='matthew.d.parno@dartmouth.edu',
     license='BSD 3-clause',
-    packages=['src'],
+    packages=['simda'],
     install_requires=['matplotlib',
                       'numpy',   
                       'pandas',
