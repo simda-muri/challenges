@@ -37,7 +37,7 @@ html_theme_options = {
     "icon_links": [
         {
             "name": "GitHub",
-            "url": "https://github.com/MeasureTransport/MParT",
+            "url": "https://github.com/simda-muri/challenges",
             "icon": "fab fa-github-square",
             "type": "fontawesome",
         }
