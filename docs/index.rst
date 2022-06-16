@@ -6,6 +6,21 @@
 Sea Ice Characterization Challenge Problems 
 =============================================
 
+Variables that arise in sea ice dynamics can be *discontinuous* in space and time,
+are almost always *sparsely* observed, and often only indirectly to observable 
+quantities, resulting in significant *uncertainty*.   Sea ice therefore provides a
+natural application space for us to develop new mathematical techniques for 
+characterizing "DSU" variables.   This package aims to formulation several prototypical
+inverse problems related to sea ice dynamics and navigation.  These problems focus primarily
+on characterizing sea ice thickness and provide a sequency with increasing in complexity
+and realism.  
+
+
+.. image:: _static/thickness_profile.png
+  :width: 100%
+  :alt: Alternative text
+
+
 .. panels::
     :img-top-cls: pl-4 pr-4
 
