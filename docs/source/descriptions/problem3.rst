@@ -40,7 +40,7 @@ Data Assimilation Framework
 ------------------------------------------------------
 References
 ------------------------------------------------------
-.. [Hibler1979] W. D. Hibler. “A 
+.. [Hibler1979] W. D. Hibler. “A Dynamic Thermodynamic Sea Ice Model”. In: Journal of Physical Oceanography 9.4 (1979). issn: 0022-3670. doi: 10.1175/1520-0485(1979)009<0815:adtsim>2.0.co;2.
 
 .. [Feltham2008] Daniel L. Feltham. “Sea ice rheology”. In: Annual Review of Fluid Mechanics 40 (2008), pp. 91–112. issn: 00664189. doi: 10.1146/annurev.fluid.40.111406.102151.
 
