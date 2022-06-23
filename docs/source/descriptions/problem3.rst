@@ -40,11 +40,18 @@ Data Assimilation Framework
 ------------------------------------------------------
 References
 ------------------------------------------------------
-.. [Hibler1979] W. D. Hibler. “A Dynamic Thermodynamic Sea Ice Model”. In: Journal of Physical Oceanography 9.4 (1979). issn: 0022-3670. doi: 10.1175/1520-0485(1979)009<0815:adtsim>2.0.co;2.
+.. [Hibler1979] W. D. Hibler. “A 
+
 .. [Feltham2008] Daniel L. Feltham. “Sea ice rheology”. In: Annual Review of Fluid Mechanics 40 (2008), pp. 91–112. issn: 00664189. doi: 10.1146/annurev.fluid.40.111406.102151.
+
 .. [Dansereau2016] V ́eronique Dansereau et al. “A Maxwell elasto-brittle rheology for sea ice modelling”. In: Cryosphere 10.3 (2016), pp. 1339–1359. issn: 19940424. doi: 10.5194/tc-10-1339-2016
+
 .. [olason2021new] Einar Olason et al. “A new brittle rheology and numerical framework for large-scale sea-ice models”. In: (2021).
+
 .. [hunke2017cice] Elizabeth Hunke et al. CICE, The Los Alamos sea ice model. Tech. rep. Los Alamos National Lab.(LANL), Los Alamos, NM (United States), 2017.
+
 .. [damsgaard2018application] Anders Damsgaard, Alistair Adcroft, and Olga Sergienko. “Application of discrete element methods to approximate sea ice dynamics”. In: Journal of Advances in Modeling Earth Systems 10.9 (2018), pp. 2228–2244.
+
 .. [west2021improving] Brendan West et al. “Improving discrete element simulations of sea ice break up: Applications to Nares Strait”. In: arXiv preprint arXiv:2105.05143 (2021)
+
 .. [chen2021lagrangian] Nan Chen, Shubin Fu, and Georgy Manucharyan. “Lagrangian Data Assimilation and Parameter Estimation of an Idealized Sea Ice Discrete Element Model”. In: Journal of Advances in Modeling Earth Systems 13.10 (2021), e2021MS002513.
