@@ -19,7 +19,7 @@ Here we formulate a filtering problem in the Eulerian framework with ice thickne
 
 Ignoring any thermodynamic thickening, the dynamics of the system are governed by the advection equation 
 
-.. math:: \frac{\partial h_I}{\partial t} + \nabla \cdot (h_I v) = 0
+.. math:: `\frac{\partial h_I}{\partial t} + \nabla \cdot (h_I v) = 0`
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Problem 3b: Data Assimilation with Physics-Based Dynamics
