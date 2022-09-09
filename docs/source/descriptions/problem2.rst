@@ -28,8 +28,12 @@ For simplicity, normalize the time interval to :math:`[0, 1]`, and assume that t
 Using this data, we can then apply further inference, approximation, or model-based methods (see problems 1 and 2) to define a registered ice thickness field :math:`\tilde{H}:\Gamma\to\mathbb{R}` over the entire reference configuration :math:`\Gamma=\Gamma_1`.
 
 ------------------------------------------------------
-Registration via Optimal Transport
+Methodology
 ------------------------------------------------------
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Registration via Optimal Transport (OT)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We now describe our method for obtaining the map :math:`T` used to register the data. As shown by Parno et al. [Parno2019]_, optimal transport methods are well-suited for solving sea ice motion estimation and registration problems, and it is this methodology that we follow here. There are, of course, other methods one can consider, such as image registration in the large deformation diffeomorphic metric matching (LDDMM) framework (see, e.g., [Beg2005]_), or optical flow algorithms (e.g., [Petrou2016]_), to name only two. Such methods, however, can struggle with the large displacements and topological changes (namely splitting) that are common in sea ice scenarios.
 
@@ -41,13 +45,28 @@ We refer to [Parno2019]_ for complete details of the method. Briefly, the idea i
 
 where :math:`p_i` denotes the :math:`i`-th entry of :math:`p`, and similarly for :math:`q`. To select the plan that rearranges the source mass into the target mass most efficiently, we define a ground cost :math:`c_{ij}` that gives the cost of moving a unit of mass from pixel :math:`i` to pixel :math:`j`. Typically, :math:`c_{ij}` is taken as the squared Euclidean distance between the pixel centers. Then, the cost of a transport plan is given by :math:`\sum_{ij}c_{ij}\gamma_{ij}`, and the optimal transport problem is to find the transport plan :math:`\gamma` with minimum cost. 
 
-Extensive effort has gone into solving optimal transport problems efficiently; see, e.g., [Peyre2019]_. For numerical experiments, we use the solver developed by Zhou and Parno [Zhou2022]_, which can be used for more general multimarginal optimal transport problems. Given the optimal coupling :math:`\sigma`, we obtain a transport map :math:`T` via the barycentric projection map, as defined in [Peyre2019]_; see [Parno2019]_ for a quick summary of details. 
+Extensive effort has gone into solving optimal transport problems efficiently; see, e.g., [Peyre2019]_. For numerical experiments, we use the solver developed by Zhou and Parno [Zhou2022]_, which can be used for more general multimarginal optimal transport problems without regularization. 
 
-We can see the results of this method in the synthetic example shown below: 
+Given the optimal coupling :math:`\sigma`, we obtain a transport map :math:`T` via the barycentric projection map, as defined in [Peyre2019]_; see [Parno2019]_ for a quick summary of details. We can see the results of this method in the synthetic example shown below: 
 
 .. image:: ../../_images/synthetic1.png
 
 The point in the lower right-hand corner corresponds to a location where we have thickness data available. As can be seen, the transport map accurately tracks the motion of this point as the ice floe undergoes various changes. As such, we can map this and other measurements from the source image into the target image to obtain a registered data set suitable for further processing. 
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Registration via Multimarginal Optimal Transport (MMOT)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+When we are given a sequential of images:
+
+.. image:: ../../_images/marginal-0-to-4.png
+
+we are able to use those finer information from the intermediate images to tone the motion, such that images at :math:`t=0.25`, :math:`t=0.5`, :math:`t=0.75` match with :math:`\mu_1`, :math:`\mu_2`, :math:`\mu_3` respectively.
+
+.. image:: ../../_images/interp-bet-0-and-4.png
+
+.. image:: ../../_images/interp-bet-0-to-4.png
+
+The top plot is done via the OT interpolation between :math:`\mu_0` and :math:`\mu_4`. The bottom plot is done via the MMOT interpolation that satisfies all marginals :math:`\{\mu_i\}_{i=0}^4`. As the OT-based interpolation follows constant-speed geodesics, the interpolation at :math:`t=0.125` for example, may not capture that the motion is slow from marginal :math:`\mu_0` at :math:`t=0.0` to marginal :math:`\mu_1` at :math:`t=0.25`. On the opposite, this feature is captured via MMOT interpolation.  
 
 ------------------------------------------------------
 References
