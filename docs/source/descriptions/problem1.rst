@@ -158,7 +158,7 @@ However, one might argue that the density should increase with the snow depth.
 
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Snow dept
+Snow depth
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 One of the main challenges in converting the ice and total freeboard, :math:`h_{if}` and :math:`h_f`, to the ice thickness :math:`h_i` via :math:numref:`formular_thickness` is uncertainty in the snow depth :math:`h_s`.  
