@@ -1,0 +1,527 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Problem 2: Lagrangian Observation Mapping &#8212; SIMDA Problems</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/descriptions/problem2';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Problem 3: Sequential Inference and Data Assimilation" href="problem3.html" />
+    <link rel="prev" title="Problem 1: Static Thickness Estimation" href="problem1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">SIMDA Problems</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Descriptions
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../implementations/index.html">
+                        Implementations
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://math.dartmouth.edu/~muri/">
+                    MURI Website
+                  </a>
+                </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/simda-muri/challenges" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Descriptions
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../implementations/index.html">
+                        Implementations
+                      </a>
+                    </li>
+                
+
+                <li class="nav-item">
+                  <a class="nav-link nav-external" href="https://math.dartmouth.edu/~muri/">
+                    MURI Website
+                  </a>
+                </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/simda-muri/challenges" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="problem1.html">Problem 1: Static Thickness Estimation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Problem 2: Lagrangian Observation Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="problem3.html">Problem 3: Sequential Inference and Data Assimilation</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Descriptions</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Problem 2: Lagrangian Observation Mapping</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="problem-2-lagrangian-observation-mapping">
+<span id="problem2"></span><h1>Problem 2: Lagrangian Observation Mapping<a class="headerlink" href="#problem-2-lagrangian-observation-mapping" title="Permalink to this headline">#</a></h1>
+<section id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Permalink to this headline">#</a></h2>
+<p>The CryoSat-2 and ICESat-2 satellites are our primary sources for remotely acquired ice thickness data. While the former has wide coverage, its accuracy is low. Conversely, ICESat-2 has high accuracy but a low footprint. The goal of data fusion is to achieve the best of both worlds: We want high coverage and high accuracy. However, in order to combine these data sets, we must first solve a preliminary problem.</p>
+<p>Satellite observations are taken at different times, and the ice topology (i.e., its spatial configuration on the surface of the ocean) will have changed during the interim through a combination of advection as well as various mechanical deformations, such as splitting and ridging. If we ignore the effects of ridging, then, over small time scales, thermodynamic effects will be negligible, and we can assume that the thickness at any particular point on the ice floe or ice sheet in question remains constant.</p>
+<p>Considering the movement of particular points of ice gives us a Lagrangian, or particle-based, coordinate system, as opposed to an Eulerian coordinate system, where we measure changes in ice position relative to a fixed background grid. Under the Lagrangian perspective, we can summarize our assumption from above by saying: Thickness remains constant along flow lines. Thus, if we can register the data—that is, if we can undo the effects of the various transformations to obtain a static view of the ice topology—we will have a much larger data set to work with.</p>
+<p>More precisely, our problem is this: Let <span class="math notranslate nohighlight">\(\Omega\subseteq\mathbb{R}^2\)</span> be a domain, and let <span class="math notranslate nohighlight">\(\Gamma_t\subseteq\Omega\)</span> be an open subset representing the ice topology at time <span class="math notranslate nohighlight">\(t\)</span>. Further, let <span class="math notranslate nohighlight">\(H:\mathbb{R}_{+}\times \Gamma_t\to\mathbb{R}\)</span> be a (random) field denoting ice thickness at time <span class="math notranslate nohighlight">\(t\)</span> and location <span class="math notranslate nohighlight">\((x, y)\)</span>. Our goal is to register data of the form <span class="math notranslate nohighlight">\(\{H(t_i,x_i)\}_{i=1}^N\)</span> to obtain a non-time-varying ice thickness field <span class="math notranslate nohighlight">\(\tilde{H}:\Gamma\to\mathbb{R}\)</span> defined on a common reference configuration <span class="math notranslate nohighlight">\(\Gamma\subseteq \Omega\)</span> of the ice.</p>
+<p>For simplicity, normalize the time interval to <span class="math notranslate nohighlight">\([0, 1]\)</span>, and assume that thickness observations are taken only at initial and final times. That is, assume we have <span class="math notranslate nohighlight">\(N\)</span> thickness measurements <span class="math notranslate nohighlight">\(\{H(0, x_i)\}_{i=1}^N\)</span> at time <span class="math notranslate nohighlight">\(t=0\)</span>, and <span class="math notranslate nohighlight">\(M\)</span> thickness measurements <span class="math notranslate nohighlight">\(\{H(1,y_j)\}_{j=1}^M\)</span> at time <span class="math notranslate nohighlight">\(t=1\)</span>. In order to chain together sequences of observations, we will typically take <span class="math notranslate nohighlight">\(\Gamma_1\)</span> to be the reference configuration. Thus, we seek a diffeomorphism, or merely a measure-preserving map, <span class="math notranslate nohighlight">\(T:\Gamma_0\to\Gamma_1\)</span>. Given such <span class="math notranslate nohighlight">\(T\)</span>, we set</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+    \tilde{H}(T(x_i))&amp;=H(0, x_i)\hspace{4mm}\text{for } i = 1,\dots, N,\text{ and }\\
+    \tilde{H}(y_j)&amp;=H(1, y_j)\hspace{4mm} \text{for } j = 1,\dots, M.
+\end{split}\end{split}\]</div>
+<p>Using this data, we can then apply further inference, approximation, or model-based methods (see problems 1 and 2) to define a registered ice thickness field <span class="math notranslate nohighlight">\(\tilde{H}:\Gamma\to\mathbb{R}\)</span> over the entire reference configuration <span class="math notranslate nohighlight">\(\Gamma=\Gamma_1\)</span>.</p>
+</section>
+<section id="methodology">
+<h2>Methodology<a class="headerlink" href="#methodology" title="Permalink to this headline">#</a></h2>
+<section id="registration-via-optimal-transport-ot">
+<h3>Registration via Optimal Transport (OT)<a class="headerlink" href="#registration-via-optimal-transport-ot" title="Permalink to this headline">#</a></h3>
+<p>We now describe our method for obtaining the map <span class="math notranslate nohighlight">\(T\)</span> used to register the data. As shown by Parno et al. <a class="reference internal" href="#parno2019" id="id1"><span>[Parno2019]</span></a>, optimal transport methods are well-suited for solving sea ice motion estimation and registration problems, and it is this methodology that we follow here. There are, of course, other methods one can consider, such as image registration in the large deformation diffeomorphic metric matching (LDDMM) framework (see, e.g., <a class="reference internal" href="#beg2005" id="id2"><span>[Beg2005]</span></a>), or optical flow algorithms (e.g., <a class="reference internal" href="#petrou2016" id="id3"><span>[Petrou2016]</span></a>), to name only two. Such methods, however, can struggle with the large displacements and topological changes (namely splitting) that are common in sea ice scenarios.</p>
+<p>We refer to <a class="reference internal" href="#parno2019" id="id4"><span>[Parno2019]</span></a> for complete details of the method. Briefly, the idea is this: Suppose we have scalar-valued source and target images <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, both of dimension <span class="math notranslate nohighlight">\(N=n\times m\)</span>. After vectorizing and normalizing the images, we can view <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span> as probability mass functions on <span class="math notranslate nohighlight">\(\{1, \dots, N\}\)</span>. A transport plan, or coupling, from <span class="math notranslate nohighlight">\(p\)</span> to <span class="math notranslate nohighlight">\(q\)</span> is a joint distribution with marginals given by <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, and in the discrete setting, a coupling is given by an <span class="math notranslate nohighlight">\(N\times N\)</span> matrix <span class="math notranslate nohighlight">\(\gamma\)</span> whose rows and columns sum to <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>, respectively. That is,</p>
+<div class="math notranslate nohighlight">
+\[\sum_i\gamma_{ij} = p_i, \hspace{4mm}\text{and } \sum_j\gamma_{ij} = q_j,\]</div>
+<p>where <span class="math notranslate nohighlight">\(p_i\)</span> denotes the <span class="math notranslate nohighlight">\(i\)</span>-th entry of <span class="math notranslate nohighlight">\(p\)</span>, and similarly for <span class="math notranslate nohighlight">\(q\)</span>. To select the plan that rearranges the source mass into the target mass most efficiently, we define a ground cost <span class="math notranslate nohighlight">\(c_{ij}\)</span> that gives the cost of moving a unit of mass from pixel <span class="math notranslate nohighlight">\(i\)</span> to pixel <span class="math notranslate nohighlight">\(j\)</span>. Typically, <span class="math notranslate nohighlight">\(c_{ij}\)</span> is taken as the squared Euclidean distance between the pixel centers. Then, the cost of a transport plan is given by <span class="math notranslate nohighlight">\(\sum_{ij}c_{ij}\gamma_{ij}\)</span>, and the optimal transport problem is to find the transport plan <span class="math notranslate nohighlight">\(\gamma\)</span> with minimum cost.</p>
+<p>Extensive effort has gone into solving optimal transport problems efficiently; see, e.g., <a class="reference internal" href="#peyre2019" id="id5"><span>[Peyre2019]</span></a>. For numerical experiments, we use the solver developed by Zhou and Parno <a class="reference internal" href="#zhou2022" id="id6"><span>[Zhou2022]</span></a>, which can be used for more general multimarginal optimal transport problems without regularization.</p>
+<p>Given the optimal coupling <span class="math notranslate nohighlight">\(\sigma\)</span>, we obtain a transport map <span class="math notranslate nohighlight">\(T\)</span> via the barycentric projection map, as defined in <a class="reference internal" href="#peyre2019" id="id7"><span>[Peyre2019]</span></a>; see <a class="reference internal" href="#parno2019" id="id8"><span>[Parno2019]</span></a> for a quick summary of details. We can see the results of this method in the synthetic example shown below:</p>
+<img alt="../../_images/synthetic1.png" src="../../_images/synthetic1.png" />
+<p>The point in the lower right-hand corner corresponds to a location where we have thickness data available. As can be seen, the transport map accurately tracks the motion of this point as the ice floe undergoes various changes. As such, we can map this and other measurements from the source image into the target image to obtain a registered data set suitable for further processing.</p>
+</section>
+<section id="registration-via-multimarginal-optimal-transport-mmot">
+<h3>Registration via Multimarginal Optimal Transport (MMOT)<a class="headerlink" href="#registration-via-multimarginal-optimal-transport-mmot" title="Permalink to this headline">#</a></h3>
+<p>When we are given a sequential of images:</p>
+<img alt="../../_images/marginal-0-to-4.png" src="../../_images/marginal-0-to-4.png" />
+<p>we are able to use those finer information from the intermediate images to tone the motion, such that images at <span class="math notranslate nohighlight">\(t=0.25\)</span>, <span class="math notranslate nohighlight">\(t=0.5\)</span>, <span class="math notranslate nohighlight">\(t=0.75\)</span> match with <span class="math notranslate nohighlight">\(\mu_1\)</span>, <span class="math notranslate nohighlight">\(\mu_2\)</span>, <span class="math notranslate nohighlight">\(\mu_3\)</span> respectively.</p>
+<img alt="../../_images/interp-bet-0-and-4.png" src="../../_images/interp-bet-0-and-4.png" />
+<img alt="../../_images/interp-bet-0-to-4.png" src="../../_images/interp-bet-0-to-4.png" />
+<p>The top plot is done via the OT interpolation between <span class="math notranslate nohighlight">\(\mu_0\)</span> and <span class="math notranslate nohighlight">\(\mu_4\)</span>. The bottom plot is done via the MMOT interpolation that satisfies all marginals <span class="math notranslate nohighlight">\(\{\mu_i\}_{i=0}^4\)</span>. As the OT-based interpolation follows constant-speed geodesics, the interpolation at <span class="math notranslate nohighlight">\(t=0.125\)</span> for example, may not capture that the motion is slow from marginal <span class="math notranslate nohighlight">\(\mu_0\)</span> at <span class="math notranslate nohighlight">\(t=0.0\)</span> to marginal <span class="math notranslate nohighlight">\(\mu_1\)</span> at <span class="math notranslate nohighlight">\(t=0.25\)</span>. On the opposite, this feature is captured via MMOT interpolation.</p>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<dl class="citation">
+<dt class="label" id="beg2005"><span class="brackets"><a class="fn-backref" href="#id2">Beg2005</a></span></dt>
+<dd><p>Beg, M. F., Miller, M. I., Trouvé, A., &amp; Younes, L. (2005). Computing large deformation metric mappings via geodesic flows of diffeomorphisms. International journal of computer vision, 61(2), 139-157.</p>
+</dd>
+<dt class="label" id="parno2019"><span class="brackets">Parno2019</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id4">2</a>,<a href="#id8">3</a>)</span></dt>
+<dd><p>Parno, M. D., West, B. A., Song, A. J., Hodgdon, T. S., &amp; O’Connor, D. T. (2019). Remote measurement of sea ice dynamics with regularized optimal transport. Geophysical Research Letters, 46(10), 5341-5350.</p>
+</dd>
+<dt class="label" id="petrou2016"><span class="brackets"><a class="fn-backref" href="#id3">Petrou2016</a></span></dt>
+<dd><p>Petrou, Z. I., &amp; Tian, Y. (2016). High-resolution sea ice motion estimation with optical flow using satellite spectroradiometer data. IEEE Transactions on Geoscience and Remote Sensing, 55(3), 1339-1350.</p>
+</dd>
+<dt class="label" id="peyre2019"><span class="brackets">Peyre2019</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id7">2</a>)</span></dt>
+<dd><p>Peyré, G., &amp; Cuturi, M. (2019). Computational optimal transport: With applications to data science. Foundations and Trends® in Machine Learning, 11(5-6), 355-607.</p>
+</dd>
+<dt class="label" id="zhou2022"><span class="brackets"><a class="fn-backref" href="#id6">Zhou2022</a></span></dt>
+<dd><p>Zhou, B., &amp; Parno, M. (2022). Efficient and Exact Multimarginal Optimal Transport with Pairwise Costs. arXiv preprint arXiv:2208.03025.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="problem1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Problem 1: Static Thickness Estimation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="problem3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Problem 3: Sequential Inference and Data Assimilation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement">Problem Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methodology">Methodology</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registration-via-optimal-transport-ot">Registration via Optimal Transport (OT)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registration-via-multimarginal-optimal-transport-mmot">Registration via Multimarginal Optimal Transport (MMOT)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/source/descriptions/problem2.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2022, SIMDA MURI Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
