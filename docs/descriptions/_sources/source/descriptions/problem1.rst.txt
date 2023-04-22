@@ -11,7 +11,7 @@ The problem
 Let :math:`h_i: \Omega \to \mathbb{R}` be a function describing sea ice thickness over the domain :math:`\Omega`. 
 The sea ice thickness function :math:`h_i` is discontinuous with infrequent but potentially large jumps at the interface between water and ice and different ice types, such as first-year and multi-year ice. 
 Our goal is to estimate :math:`h_i` given different observation modalities. 
-These are \emph{not} observations of the sea ice thickness :math:`h_i`, but related to the snow depth :math:`h_s`, sea ice freeboard :math:`h_{if}` (the extension of sea ice above sea level not including the snow depth), and total freeboard :math:`h_f` (the extension of sea ice above sea level including the snow depth), where 
+These are not observations of the sea ice thickness :math:`h_i`, but related to the snow depth :math:`h_s`, sea ice freeboard :math:`h_{if}` (the extension of sea ice above sea level not including the snow depth), and total freeboard :math:`h_f` (the extension of sea ice above sea level including the snow depth), where 
 
 .. math:: 
     :label: freeboard
