@@ -63,7 +63,7 @@ The snow depth and density as well as the water and ice density are discussed in
 Observed data
 ------------------------------------------------------
 
-Altimetry satellites can provide us with data on the total and sea ice freeboard, which can then be connected to ice thickness via :math:numref:`formular_thickness`. 
+Altimetry satellites can provide data on the total and sea ice freeboard, which can then be connected to ice thickness via :math:numref:`formular_thickness`. 
 
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
