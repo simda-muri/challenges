@@ -1,7 +1,8 @@
 ## Overview 
 This repository contains descriptions and implementations of several "challenge" problems related to the use of inverse problems and data assimilation techniques to characterize sea ice.   By providing these problems, our goal is to accelerate the advancement of algorithms for solving inverse problems that arise in sea ice modeling and remote sensing.  These problems do not capture all of the interesting aspect of this problem space, but should provide an initial bridge between the sea ice community and the computational inverse problem community.
 
-The documentation for these problems can be found at [simda-muri.github.io/challenges/index.html](https://simda-muri.github.io/challenges/index.html).
+This 
+The documentation for these problems can be found at [simda-muri.github.io/challenges/docs/descriptions/index.html](https://simda-muri.github.io/challenges/docs/descriptions/index.html).
 
 ## Installation
 
